@@ -1,0 +1,29 @@
+{% extends 'book/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="about-info">
+        <div class="about-info-welcome">
+            <b>Приветствуем на сайте!</b>
+        </div>
+
+        <p>Описание сайта</p>
+
+        <p>Информация о сайте</p>
+
+        <div class="about-info-warning">
+            <b>Напоминание</b>
+        </div>
+
+        <div class="about-info-contact">
+            Контакты для связи: 
+        </div>
+
+        <div class="footer-contact">
+            <div>
+                <img src="{% static 'book/images/telegram-contact.png' %}">
+                    <a href="#">КОНТАКТ</a>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

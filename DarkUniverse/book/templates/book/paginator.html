@@ -1,0 +1,47 @@
+{% load static %}
+{% load book_tags %}
+{% block paginator %}
+
+{% if page_obj.has_other_pages %}
+
+<nav class="pagination">
+	<ul class="pagination-block">
+            {% if page_obj.has_previous %}
+                 <li class="pagination-block-side-left">
+                    <a href="{% url 'search' %}{% construct_url 1 'page' request.GET.urlencode %}">1</a>
+                </li>
+
+                <li class="pagination-block-li-back">
+                    <a href="{% url 'search' %}{% construct_url page_obj.previous_page_number 'page' request.GET.urlencode %}">ᐊ</a>
+                </li>
+            {% endif %}
+
+
+        <div class="pagination-main">
+    		{% for page in paginator.page_range %}
+            {% if page_obj.number == page %}
+                <li class="pagination-block-li-active">
+                    <a href="{% url 'search' %}{% construct_url page 'page' request.GET.urlencode %}">{{ page }}</a>
+                </li>
+                {% elif page >= page_obj.number|add:-3 and page <= page_obj.number|add:3 %}
+        		<li class="pagination-block-li">
+        			<a href="{% url 'search' %}{% construct_url page 'page' request.GET.urlencode %}">{{ page }}</a>
+        		</li>
+            {% endif %}
+    		{% endfor %}
+        </div>
+
+
+            {% if page_obj.has_next %}
+                <li class="pagination-block-li-forward">
+                    <a href="{% url 'search' %}{% construct_url page_obj.next_page_number 'page' request.GET.urlencode %}">ᐅ</a>
+                </li>
+                <li class="pagination-block-side-right">
+                    <a href="{% url 'search' %}{% construct_url paginator.num_pages 'page' request.GET.urlencode %}">{{ paginator.num_pages }}</a>
+                </li>
+            {% endif %}
+	</ul>
+</nav>
+{% endif %}
+
+{% endblock %}

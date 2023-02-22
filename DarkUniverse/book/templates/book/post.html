@@ -1,0 +1,74 @@
+{% extends 'book/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="post_container">
+        <div class="post_container-div-image">
+            {% if post.photo_resize %}
+                <img class="post_container-item-image" src="{{post.photo_resize.url}}">
+            {% endif %}
+        </div>
+
+        <div class="post_container-div-text">
+            <div class="post_container-div-info">
+                    <div class="post_container-div-info-channel">
+                        <p>Канал: {{post.channel}}</p>
+                    </div>
+
+                     <div class="post_container-div-info-data">
+                        <p>{{post.date}}</p>
+                    </div>
+
+            </div>
+
+            <div class="post_container-title">
+                {{post.name}}
+            </div>
+            
+            <div class="post_container-div-year-author">
+                <div class="post_container-item-year">
+                    <p>Автор: {{post.author}}</p>
+                </div>
+
+
+                <div class="post_container-item-author">
+                    <p>Год: {{post.year}}</p>
+                </div>
+
+            </div>
+
+
+            <div class="post_container-item-description">
+                <p>{{post.description}}</p>
+            </div>
+
+            <div class="post_container-div-footer">
+                
+                <div class="post_container-div-footer-size-type">
+                    <div class="post_container-footer-size">
+                        <p>type: {{post.type_file}}</p>
+                    </div>
+
+                    <div class="post_container-footer-type">
+                        <p>Size: {{post.file_size|filesizeformat}}</p>
+                    </div>
+                </div>
+
+                <div class="post_container-div-footer-buttons">
+                    {% if post.yadisk %}
+                    <div class="content-item-footer_btn_download">
+                        <a href="{{post.yadisk}}" target="_blanc"><img src="{% static 'book/images/download.png' %}"></a>
+                    </div>
+                    {% else %}
+                    <div class="content-item-footer_btn_non_download">
+                        <img src="{% static 'book/images/no_download.png' %}">
+                    </div>
+                    {% endif %}
+
+                    <div class="content-item-footer_btn_telegram">
+                        <a href="{{ post.name_link }}" target="_blanc"><img src="{% static 'book/images/telegram.png' %}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

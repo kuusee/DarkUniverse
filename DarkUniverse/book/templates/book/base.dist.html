@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DarkUniverse. Научная литература</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Книги из телеграмма">
+	<meta name="viewport" content="width=device-width">
+	<link rel="shortcut icon" type="image/png" href="{% static 'book/images/favicon.png' %}">
+	<link type="text/css" href="{% static 'book/css/styles.css' %}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header_conteiner">
+				
+				<div class="header_logo">
+					<a href="{% url 'home' %}">Dark Universe</a>
+				</div>
+
+				<div class="header-search-panel">
+					<form id="words_search" action="{% url 'search' %}" method="get">
+						<textarea name="words" maxlength="100" row="2" wrap="hard" placeholder="Искусственный интеллект"></textarea>
+						<input type="submit" value="">
+						<input type="hidden" name="search_by" value="words">
+					</form>
+					<div class="header-button-full-search-void-block"></div>
+					<div class="header-button-full-search">
+						<button id='button_full_search'></button>
+					</div>
+
+				</div>
+				<div class="header_buttons" align="right">
+					<div class="header_button">
+						<a href="{% url 'about' %}"><img src="{% static 'book/images/icon_info-red.png' %}"></a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="header-search-form">
+				<form id="full_search" action="{% url 'search' %}" method="get">
+					<div class="hh">
+						<div class="header-search-form-block-title-author-year-words">
+							<div class="header-search-form-std-block">
+								<div class="header-search-form-title">
+									<p>Название:</p>
+									<textarea cols="20" name="title" maxlength="200" wrap="hard" placeholder="например, математический анализ....."></textarea>
+								</div>
+							</div>
+
+							<div class="header-search-form-duble-author-year">
+								<div class="header-search-form-std-block">
+									<p>Авторы:</p>
+									<textarea cols="20" name="author" maxlength="200" wrap="hard" placeholder="например, Фихтенгольц"></textarea>
+								</div>
+							</div>
+
+							<div class="header-search-form-block-words">
+								<div class="header-search-form-std-block">
+									<p>Поиск по словам:</p>
+									<textarea cols="20" name="words" maxlength="200" wrap="hard" placeholder="например, Математический анализ Фихтенгольц..."></textarea>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="header-search-form-block-public-select-data">
+							<div class="data-year">
+								<div class="header-search-form-std-block">
+
+									<div class="search-form-input-public-data">
+									<p>Период:</p>
+									<div>
+										<input type="date" name="public-data-min" pattern="[0-9]{0,4}" size="10" placeholder="10.11.1990">
+										<input type="date" name="public-data-max" pattern="[0-9]{0,4}" size="10" placeholder="10.12.2010">
+										</div>
+									</div>
+								</div>
+
+								<div class="header-search-form-std-block">
+									<div class="search-form-input-year-panel">
+									<p>Год:</p>
+									<div>
+										<input type="text" name="year-min" pattern="[0-9]{0,4}" size="4" placeholder="1900">
+										<input type="text" name="year-max" pattern="[0-9]{0,4}" size="4" placeholder="2100">
+									</div>
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="select-buttons">
+								<div class="header-search-form-std-block">
+									<div class="search-form-select">
+									<select name="source" required>
+										   <option value="">Ресурс...</option>
+										   <option value="1">Везде</option>
+										   <option value="2">Только сайт</option>
+										   <option value="3">Только телеграмм</option>
+									</select>
+									</div>
+								</div>
+
+								<div class="header-search-form-std-block">
+									<div class="search-form-button-panel">
+										<input type="submit" name="submit" value="SEARCH">
+										<input type="reset" value="CLEAR">
+										<input type="hidden" name="search_by" value="full">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</header>
+
+		<main class="content_wrapper">
+
+			<div class="content_container">
+				{% block content %}
+                {% endblock %}
+			</div>
+		</main>
+
+		<footer class="footer">
+			<div class="footer_container">
+				<div class="footer-info">
+					Администрация не несет ответственности за предоставленные на сайте материалы. 
+					<br>
+					Весь архив предоставлен только в ознакомительных целях.
+					<br>
+					Любой пост будет удален по требованию правообладателя.
+				</div>
+
+				<div class="footer-contact">
+					<div>
+						<img src="{% static 'book/images/telegram-contact.png' %}">
+						<a href="#">КОНТАКТ</a>
+					</div>
+					<div>
+						<img src="{% static 'book/images/email-contact.png' %}">
+						<b>ПОЧТА</b>
+					</div>
+				</div>
+			</div>
+  		</footer>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'book/js/scripts.js' %}"></script>
+</div>
+</body>
+</html>

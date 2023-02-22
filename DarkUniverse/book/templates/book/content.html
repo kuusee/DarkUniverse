@@ -1,0 +1,88 @@
+{% extends 'book/base.html' %}
+{% load static %}
+<!--{% load mathfilters %}-->
+{% block content %}
+
+<ul class="test-ul">
+	{% for post in posts %}
+		<li><div class="content-item">
+				<div class="content-item-number">
+					<p><b>{{ page_obj.start_index|add:forloop.counter0 }}</b></p>
+				</div>
+				<div class="content-div-image">
+					{% if post.photo_thumbnail %}
+					<img class="content-item-image" src="{{post.photo_thumbnail.url}}">
+					{% endif %}
+				</div>
+
+				<div class="content-div-text">
+					<div class="content-item-header">
+						<div class="content-div-channel-date">
+							<div class="content-item-channel">
+								<p>Канал: {{post.channel}}</p>
+							</div>
+							<div class="content-item-date">
+								<p>{{post.date}}</p>
+							</div>
+						</div>
+
+						<div class="content-item-title">
+							{% autoescape on %}
+							<a href="{{ post.get_absolute_url }}" target="_blanc"><p>{{post.name|truncatechars:60}}</p></a>
+							{% endautoescape %}
+						</div>
+
+						<div class="content-div-year_author">
+							<div class="content-item-year">
+								<p>Год: {{post.year}}</p>
+							</div>
+							<div class="content-item-author">
+								<p>Автор: {{post.author|truncatewords:50}}</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="content-item-description">
+			  				<p>{{post.description|truncatechars:650}}</p>
+					</div>
+
+					<div class="content-div-footer">
+						<div class="content-div-footer_size_type">
+							<div class="content-item-footer_size">
+								<p>Size: {{post.file_size|filesizeformat}}</p>
+							</div>
+
+							<div class="content-item-footer_type">
+								<p>type: {{post.type_file}}</p>
+							</div>
+						</div>
+
+						<div class="content-div-footer_buttons">
+							{% if post.yadisk %}
+							<div class="content-item-footer_btn_download">
+								<a href="{{post.yadisk}}" target="_blanc"><img src="{% static 'book/images/download.png' %}"></a>
+							</div>
+							{% else %}
+							<div class="content-item-footer_btn_non_download">
+								<img src="{% static 'book/images/no_download.png' %}">
+							</div>
+							{% endif %}
+
+							<div class="content-item-footer_btn_telegram">
+								<a href="{{ post.name_link }}" target="_blanc"><img src="{% static 'book/images/telegram.png' %}"></a>
+							</div>
+
+							<div class="content-item-footer_btn_view">
+								<a href="{{ post.get_absolute_url }}" target="_blanc"><img src="{% static 'book/images/view_more.png' %}"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	{% endfor %}
+</ul>
+
+{% include 'book/paginator.html' %}
+
+{% endblock %}
