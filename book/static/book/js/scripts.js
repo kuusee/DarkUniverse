@@ -7,23 +7,10 @@ $(document).ready(function() {
 	$(document).on("click", "#button_full_search", function() {
 		searchBlock.slideToggle(function() {
 			if (searchBlock.is(':visible')) {
-				// $(".header-search-panel").remove();
-				// $('.header_buttons').after(second);
-
-
-				// $('.header_buttons').css({"order":"1"});
-				// $(".header-search-panel").css({"order":"2"});
-				// $(".header-search-panel").css({"width": "inherit"});
 				$('#words_search').hide();
 				$('.header-button-full-search-void-block').show();
 			}
 			else {
-				// $('.header_buttons').remove();
-				// $(".header-search-panel").after(first);
-
-				// $('.header_buttons').css({"order":"2"});
-				// $(".header-search-panel").css({"order":"1"});
-				// $(".header-search-panel").css({"width": "350px"});
 				$('#words_search').show();
 				$('.header-button-full-search-void-block').hide();
 			}
