@@ -483,7 +483,7 @@ Django, PostgreSQL 10, Gunicorn, Nginx
     }
 
     location /Photo/ {
-    root /home/****your_username****/Files/Media;
+    root /home/****your_username****/Media/Files;
     }
 
     location / {
@@ -496,14 +496,14 @@ Django, PostgreSQL 10, Gunicorn, Nginx
     Здесь обращаю внимание на строчки:
     ```
     location /Photo/ {
-    root /home/****your_username****/Files/Media;
+    root /home/****your_username****/Media/Files;
     }
     ```
     ```
     location /Photo/ - должно соответствовать переменной MEDIA_URL из файла settings.py
     ```
     ```
-    root /home/****your_username****/Files/Media - должно соответствовать переменной MEDIA_ROOT из файла .env - это путь по которому находится папка Photo
+    root /home/****your_username****/Media/Files - должно соответствовать переменной MEDIA_ROOT из файла .env - это путь по которому находится папка Photo
     ```
 
     Активируем файл, и привязываем его к каталогу sites-enabled:
